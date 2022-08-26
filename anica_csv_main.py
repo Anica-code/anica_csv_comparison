@@ -43,10 +43,12 @@ col_match_count = [df[col].value_counts()[True] for col in df.columns]
 # Calculating matching percentage
 perc = [(col_match_count[i] / col_val_count[i]) * 100 for i in range(len(col_val_count))]
 
-# Finding total counts
-total_count = df.count().sum()
+# Finding total matched counts
 total_count_match = df.sum().sum()
 
 # Turning percentages into a DataFrame
 perc_dict = dict(zip(sqlserver_df.columns, perc))
 perc_df = pd.DataFrame(perc_dict, index=['perc (%)'])
+
+print(perc_df.head(), f"\n\nTotal values matched: {total_count_match}")
+
